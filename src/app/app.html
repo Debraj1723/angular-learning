@@ -1,17 +1,19 @@
 <app-header />
 <main>
   <ul id="users">
+    @for(user of users;track user.id){
     <li>
-      <app-user [avatar]="users[0].avatar" [name]="users[0].name" />
+      <app-user
+        [selected]="selectedUser?.id === user.id"
+        [user]="user"
+        (select)="onUserSelcet(user)"
+      />
     </li>
-    <li>
-      <app-user [avatar]="users[1].avatar" [name]="users[1].name" />
-    </li>
-    <li>
-      <app-user [avatar]="users[2].avatar" [name]="users[2].name" />
-    </li>
-    <li>
-      <app-user [avatar]="users[3].avatar" [name]="users[3].name" />
-    </li>
+    }
   </ul>
+  @if(selectedUser){
+  <app-tasks [userId]="selectedUser.id" [name]="selectedUser.name"></app-tasks>
+  }@else{
+  <p>Please selcet an user</p>
+  }
 </main>
