@@ -5,9 +5,9 @@ import { TaskService } from '../tasks.service';
 
 @Component({
   selector: 'app-task',
-  imports: [Card],
   templateUrl: './task.html',
   styleUrl: './task.css',
+  standalone:false
 })
 export class Task {
   @Input({ required: true }) data!: TaskInterface;
